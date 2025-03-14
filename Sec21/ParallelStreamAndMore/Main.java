@@ -4,6 +4,9 @@ import java.util.Comparator;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.StringJoiner;
+import java.util.TreeMap;
+import java.util.Collections;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -77,7 +80,7 @@ public class Main {
             Stream.generate(Person::new)
             .limit(10000)
             .parallel()
-            .collect(Collectors.groupingBy(
+            .collect(Collectors.groupingByConcurrent(
                 Person::lastName,
                 Collectors.counting()
             ));
@@ -90,5 +93,28 @@ public class Main {
         }
 
         System.out.println("Total = " + total);
+        
+        System.out.println(lastNameCounts.getClass().getName());
+
+
+        
+        var lastCounts = Collections.synchronizedMap(new TreeMap<String,Long>());
+        Stream.generate(Person::new)
+            .limit(10000)
+            .parallel()
+            .forEach((person) -> lastCounts.merge(person.lastName(),
+            1L, Long::sum));
+        
+        System.out.println(lastCounts);
+
+        total = 0;
+        for(long count : lastCounts.values()){
+            total += count;
+        }
+
+        System.out.println("Total = " + total);
+        
+        System.out.println(lastCounts.getClass().getName());
+
     }
 }
