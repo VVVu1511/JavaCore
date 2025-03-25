@@ -1,5 +1,7 @@
 package Exception;
 
+import java.io.FileReader;
+import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         int a = 3;
@@ -7,6 +9,14 @@ public class Main {
         int []c = {1,2,3,4};
         
         System.out.println("result:" + divide(a, b) + outArray(c, 5)); 
+
+        try(FileReader fr = new FileReader("cry.txt")){
+
+            fr.read();
+
+        } catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     private static int divide(int a,int b){
