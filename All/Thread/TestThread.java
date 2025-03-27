@@ -1,5 +1,7 @@
 package Thread;
 
+import java.util.concurrent.Semaphore;
+
 class ThreadDemo extends Thread{
     ThreadDemo(){
 
@@ -36,5 +38,13 @@ public class TestThread {
         thread1.start();
         thread2.start();
         thread3.start();
+    
+        Semaphore sem = new Semaphore(1);
+        try{
+            sem.acquire();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
