@@ -1,7 +1,12 @@
 package com.navin.Vu;
+import org.springframework.stereotype.Component;
 
-public class Bike {
-	public void drive() {
+
+@Component
+public class Bike implements Vehicle
+{
+	public void drive() 
+	{
 		System.out.println("Bhaag raha hai");
 	}
 }
