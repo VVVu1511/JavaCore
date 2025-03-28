@@ -6,12 +6,12 @@ import org.springframework.stereotype.Component;
 @Component
 //@Primary
 
-public class Snapdragon implements MobileProcessor {
+public class Apple implements MobileProcessor {
 
 	@Override
 	public void process() {
 		// TODO Auto-generated method stub
-		System.out.println("World best CPU!");
+		System.out.println("World 1st CPU!");
 	}
 
 }

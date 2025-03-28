@@ -12,7 +12,9 @@ public class App {
     	ApplicationContext factory = new AnnotationConfigApplicationContext(AppConfig.class);
     	
     	Samsung s7 = factory.getBean(Samsung.class);
+    	Apple a7 = factory.getBean(Apple.class);
     	
         s7.config();
+        a7.process();
     }
 }
